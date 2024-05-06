@@ -1,19 +1,13 @@
 import React from 'react';
 import './App.css';
-import BasicSelect from './components/RoleSelector';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import {useState} from 'react';
-import RoleSelector from './components/RoleSelector';
-import {SelectChangeEvent} from '@mui/material/Select';
 import axios from 'axios';
 import InquirySelector from './components/InquirySelector';
 
 function App() {
-  const [role, setRole] = useState('');
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
-  const [phone, setPhone] = React.useState('');
   const [inquiry, setInquiry] = React.useState('general');
   const [title, setTitle] = React.useState('');
   const [message, setMessage] = React.useState('');
@@ -22,18 +16,18 @@ function App() {
 
     // send a post request to api using axios
     const response = await axios.post(
-      'http://localhost:3000/conversations',
+      'http://localhost:3001/conversations',
       {
         name,
         email,
-        role,
-        phone,
         inquiry,
         title,
         message,
       },
       {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}}
     );
+
+    console.log(response.data);
   }
 
   return (
@@ -70,16 +64,6 @@ function App() {
               defaultValue=''
               style={{marginBottom: '10px'}}
               onChange={(e) => setEmail(e.target.value)}
-            />
-            <RoleSelector onChange={setRole} />
-            <TextField
-              required
-              id='outlined-required'
-              label='Phone'
-              type='number'
-              defaultValue=''
-              style={{marginBottom: '10px'}}
-              onChange={(e) => setPhone(e.target.value)}
             />
             <InquirySelector onChange={setInquiry} />
             <TextField
