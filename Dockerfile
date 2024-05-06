@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Build the TypeScript code
-# For production environment
+# Needed only for production environment
 RUN npm run build
 
 # Expose the port the app runs on

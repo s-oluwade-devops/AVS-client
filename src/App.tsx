@@ -16,7 +16,7 @@ function App() {
 
     // send a post request to api using axios
     const response = await axios.post(
-      'http://localhost:3001/conversations',
+      'http://localhost:3000/conversations',
       {
         name,
         email,
